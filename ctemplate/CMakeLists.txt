@@ -9,11 +9,12 @@ endif()
 if(MSVC)
   add_compile_options(/W3 /wd4005 /wd4996 /wd4018 -D_CRT_SECURE_NO_WARNINGS)
   add_definitions(-D_VARIADIC_MAX=10)
+else()
+  add_definitions(-DNO_THREADS)
 endif()
 
 set(SOURCE_PATH ${PROJECT_SOURCE_DIR}/src)
 set(BASE_SOURCE_PATH ${SOURCE_PATH}/base)
-set(WINDOWS_SOURCE_PATH ${SOURCE_PATH}/windows)
 set(HTMLPARSER_SOURCE_PATH ${SOURCE_PATH}/htmlparser)
 
 set(COMMON_INCLUDES ${PROJECT_BINARY_DIR}/include)
@@ -53,12 +54,29 @@ set(SRC_FILES
   "${SOURCE_PATH}/template_namelist.cc"
   "${SOURCE_PATH}/template_pathops.cc"
   "${SOURCE_PATH}/template_string.cc"
-  "${SOURCE_PATH}/windows/port.cc"
 )
+if (MSVC)
+  list(APPEND SRC_FILES "${SOURCE_PATH}/windows/port.cc")
+endif()
 
-file(COPY "${WINDOWS_SOURCE_PATH}/" DESTINATION ${COMMON_INCLUDES})
-file(COPY "${WINDOWS_SOURCE_PATH}/config.h" DESTINATION ${COMMON_INCLUDES}/windows)
-file(COPY "${WINDOWS_SOURCE_PATH}/port.h" DESTINATION ${COMMON_INCLUDES}/windows)
+if (MSVC)
+  set(WINDOWS_SOURCE_PATH ${SOURCE_PATH}/windows)
+  file(COPY "${WINDOWS_SOURCE_PATH}/" DESTINATION ${COMMON_INCLUDES})
+  file(COPY "${WINDOWS_SOURCE_PATH}/config.h" DESTINATION ${COMMON_INCLUDES}/windows)
+  file(COPY "${WINDOWS_SOURCE_PATH}/port.h" DESTINATION ${COMMON_INCLUDES}/windows)
+else()
+  execute_process(
+    COMMAND "./autogen.sh"
+     WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+  )
+  execute_process(
+    COMMAND "./configure"
+    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+  )
+  file(COPY "${SOURCE_PATH}/" DESTINATION ${COMMON_INCLUDES})
+  file(COPY "${SOURCE_PATH}/config.h" DESTINATION ${COMMON_INCLUDES}/windows)
+endif()
+
 file(COPY ${HTMLPARSER_HEADERS} DESTINATION ${COMMON_INCLUDES}/htmlparser)
 file(COPY ${BASE_HEADERS} DESTINATION ${COMMON_INCLUDES}/base)
 
@@ -76,7 +94,7 @@ execute_process(
 file(WRITE "${COMMON_INCLUDES}/htmlparser/htmlparser_fsm.h" "${HTMLPARSER_CONFIG_H}")
 file(WRITE "${COMMON_INCLUDES}/htmlparser/jsparser_fsm.h" "${JSPASPER_CONFIG_H}")
 
-include_directories(${COMMON_INCLUDES})
+include_directories(${COMMON_INCLUDES} ${SOURCE_PATH})
 
 add_library(libctemplate ${SRC_FILES})
 if(NOT BUILD_SHARED_LIBS)
