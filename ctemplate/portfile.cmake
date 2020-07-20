@@ -8,6 +8,11 @@ vcpkg_from_github(
   HEAD_REF master
 )
 
+if (VCPKG_TARGET_IS_WINDOWS)
+  vcpkg_apply_patchs(fix-msvc.patch)
+endif()
+
+
 file(COPY ${CMAKE_CURRENT_LIST_DIR}/CMakeLists.txt DESTINATION ${SOURCE_PATH})
 
 vcpkg_find_acquire_program(PYTHON3)
