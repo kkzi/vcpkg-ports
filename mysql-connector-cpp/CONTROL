@@ -1,0 +1,5 @@
+Source: mysql-connector-cpp
+Version: 8.0.20
+Homepage: https://github.com/mysql/mysql-connector-cpp/
+Build-Depends: openssl, protobuf
+Description: A C++ interface for communicating with MySQL servers.
