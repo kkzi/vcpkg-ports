@@ -48,6 +48,8 @@ vcpkg_configure_cmake(
         -DWITH_LZ4=system
         -DWITH_ZLIB=system
         -DFORCE_UNSUPPORTED_COMPILER=${FORCE_UNSUPPORTED_COMPILER}
+        -DWITH_BOOST=$ENV{BOOST}
+        -DWITH_BOOST=D:/Local/boost_1_73_0
 )
 
 vcpkg_install_cmake(ADD_BIN_TO_PATH)
