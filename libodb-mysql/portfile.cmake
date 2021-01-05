@@ -1,5 +1,5 @@
 vcpkg_download_distfile(ARCHIVE
-    URLS "http://127.0.0.1/D%3A/SSS/libodb-mysql-2.5.0-b.19.tar.gz"
+    URLS "https://github.com/kkzi/vcpkg-libs/blob/master/libodb-mysql-2.5.0-b.19.tar.gz"
     FILENAME "libodb-mysql-2.5.0-b.19.tar.gz"
     SHA512 674cd6b4a75f9e1c43bc6542b11ec6d126202fe0c637ecfe251887649327f669ae8d6f6dcef68bfe2e3c46f0491cd39649736acd500d671c89fef5f5de8c49e3
 )

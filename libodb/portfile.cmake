@@ -2,7 +2,7 @@ include(vcpkg_common_functions)
 include(CMakePackageConfigHelpers)
 
 vcpkg_download_distfile(ARCHIVE
-    URLS "http://127.0.0.1/D%3A/SSS/libodb.zip"
+    URLS "https://github.com/kkzi/vcpkg-libs/raw/master/libodb-2.5.0-b.19.zip"
     FILENAME "libodb-2.5.0-b.19.zip"
     SHA512 9da0047f6208cc34aa93cd3bb11f422a2960c0c805a82edd90444114c8c00aa51677dde5cacdf91b686e46b5c19243bd7bcf7014f4f860b13c0d002860962aaa
 )

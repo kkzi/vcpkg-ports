@@ -3,7 +3,7 @@ if(VCPKG_TARGET_IS_WINDOWS)
     vcpkg_check_linkage(ONLY_STATIC_LIBRARY)
 endif()
 vcpkg_download_distfile(ARCHIVE
-    URLS "http://127.0.0.1/D%3A/SSS/libodb-sqlite.zip"
+    URLS "https://github.com/kkzi/vcpkg-libs/blob/master/libodb-sqlite-2.5.0-b.19..zip"
     FILENAME "libodb-sqlite-2.5.0-b19.tar.gz"
     SHA512 6e45cfb8ac40f86a7c923bb7cf19218698283f741a6a03bae302c854ade3f9191d76cac17a56ff9f6bd310db6d887ff44b3cd0c288eac96c364ed48f6d3d7b61
 )
