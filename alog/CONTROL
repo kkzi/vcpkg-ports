@@ -2,4 +2,4 @@ Source: alog
 Version: 1.0.0
 Homepage: https://github.com/kkzi/alog
 Description: a log lib based on spdlog
-Build-Depends: spdlog
+Build-Depends: 
