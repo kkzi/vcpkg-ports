@@ -1,8 +1,8 @@
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO kkzi/alog
-    REF c639b77d80f8c0d04d246caf720dd37bc8638fc1 #v1.0.0
-    SHA512 e7821b6864a4df270f417aa2064194e69c93b64744adf6f8147fc0d2e02a7f096ba431bbbdc06c8927cb4db2e594909e66598dd50ebcc1c07f82443f50f81dbf
+    REF eb82c97dabe6cdab840df8fad8d41e2785ace060
+    SHA512 ec687ea88010efb179620f10a8ebff0af6c3b98b2f43b95df954c629d3d2f05899a2cde9e8c3ea71a1904a3f7a09c507f08af462bbea28b13247cdec942dc225
     HEAD_REF master
 )
 
@@ -11,6 +11,11 @@ vcpkg_configure_cmake(
     PREFER_NINJA
 )
 vcpkg_install_cmake()
+if(EXISTS "${CURRENT_PACKAGES_DIR}/lib/cmake/${PORT}")
+    vcpkg_fixup_cmake_targets(CONFIG_PATH lib/cmake/${PORT})
+elseif(EXISTS "${CURRENT_PACKAGES_DIR}/lib/${PORT}/cmake")
+    vcpkg_fixup_cmake_targets(CONFIG_PATH lib/${PORT}/cmake)
+endif()
 
 vcpkg_copy_pdbs()
 
