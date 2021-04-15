@@ -38,7 +38,7 @@ function(vcpkg_from_gitee)
     # Note: git init is safe to run multiple times
     vcpkg_execute_required_process(
       ALLOW_IN_DOWNLOAD_MODE
-      COMMAND ${GIT} clone --recursive ${_vdud_URL} ${_vdud_TAG} 
+      COMMAND ${GIT} clone --recursive ${_vdud_URL} ${PORT}-${_vdud_TAG} 
       WORKING_DIRECTORY ${DOWNLOADS}/git-tmp
       LOGNAME git-fetch-${TARGET_TRIPLET}
     )
@@ -47,7 +47,7 @@ function(vcpkg_from_gitee)
     vcpkg_execute_required_process(
       ALLOW_IN_DOWNLOAD_MODE
       COMMAND ${TAR} --exclude .git -czvf ${TEMP_ARCHIVE} .
-      WORKING_DIRECTORY ${DOWNLOADS}/git-tmp/${_vdud_TAG}
+      WORKING_DIRECTORY ${DOWNLOADS}/git-tmp/${PORT}-${_vdud_TAG}
       LOGNAME archive
     )
 
