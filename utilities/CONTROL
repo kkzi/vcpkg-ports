@@ -1,0 +1,5 @@
+Source: utilities
+Version: 1.0.0
+Homepage: https://gitee.com/dataps/utilities
+Description: data process utilities
+Build-Depends: 

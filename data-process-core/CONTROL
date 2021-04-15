@@ -1,0 +1,5 @@
+Source: data-process-core
+Version: 1.0.0
+Homepage: https://gitee.com/dataps/data_process_core
+Description: telemetry data process
+Build-Depends: fmt, nlohmann-json, pugixml
