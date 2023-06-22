@@ -1,0 +1,5 @@
+Source: logger
+Version: 1.0.0
+Homepage: https://github.com/kkzi/Logger
+Description: a log lib based on spdlog
+Build-Depends: 
